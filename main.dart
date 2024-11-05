@@ -11,21 +11,36 @@ class MyApp extends StatelessWidget {
     return MaterialApp( // Root widget
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('My Home Page'),
+          title: const Text('Login Page'),
         ),
         body: Center(
           child: Builder(
             builder: (context) {
               return Column(
                 children: [
-                  const Text('Hello, World!'),
-                  const SizedBox(height: 20),
+                  const Text('Flutter'),
+                  const SizedBox(height: 50),
+
+TextField(
+  decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: 'Enter Your Email',
+  ),
+),
+TextField(
+  decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    hintText: 'Enter Your Password',
+  ),
+),
+
                   ElevatedButton(
                     onPressed: () {
                       print('Click!');
                     },
-                    child: const Text('A button'),
+                    child: const Text('LOGIN'),
                   ),
+                  
                 ],
               );
             },
