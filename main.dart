@@ -34,8 +34,6 @@ class MyApp extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset('assets/flutter_gambar_dica.jpeg', height: 50),
-                const SizedBox(height: 8),
                 const Text(
                   'Dila dan Ica',
                   style: TextStyle(
