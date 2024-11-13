@@ -1,68 +1,156 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter layout demo',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Container Widget'),
+          title: const Text('Destinasi Liburanmu'),
         ),
-        body: Center(
-          child: Container(
-            height: 320,
-            width: double.infinity,
-            margin: const EdgeInsets.all(16.0),
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 219, 218, 157),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color.fromARGB(255, 171, 183, 58)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+        body: Column(
+          children: const [
+            ImageSection(),
+            TitleSection(
+              name: 'One Day Tour Bromo by DiCa.Travel',
+              location: 'Prbolinggo, Jawa Timur, Indonesia',
             ),
+            ButtonSection(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ImageSection extends StatelessWidget {
+  const ImageSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'assets/bromo.jpg',  
+      width: double.infinity,
+      height: 240,
+      fit: BoxFit.cover,
+    );
+  }
+}
+
+class TitleSection extends StatelessWidget {
+  const TitleSection({
+    super.key,
+    required this.name,
+    required this.location,
+  });
+
+  final String name;
+  final String location;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: [
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Dila dan Ica',
-                  style: TextStyle(
-                      fontSize: 25,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    name,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                const SizedBox(height: 8),
-                const Divider(color: Colors.black),
-                const Text(
-                  'Quotes Hari ini: Dibalik senyum yang tampak kuat, sebenarnya ada cerita yang tak terucap. Terlihat kuat kadang hanya cara untuk bertahan, bukan tanda semuanya baik-baik saja',
-                  style: TextStyle(
-                    color: Colors.white,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 40,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('klik untuk quotes lain'),
+                Text(
+                  location,
+                  style: TextStyle(
+                    color: Colors.grey[500],
                   ),
                 ),
               ],
             ),
           ),
-        ),
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          const Text('41'),
+        ],
       ),
+    );
+  }
+}
+
+class ButtonSection extends StatelessWidget {
+  const ButtonSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final Color color = Theme.of(context).primaryColor;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ButtonWithText(
+          color: color,
+          icon: Icons.call,
+          label: 'HUBUNGI',
+        ),
+        ButtonWithText(
+          color: color,
+          icon: Icons.near_me,
+          label: 'RUTE',
+        ),
+        ButtonWithText(
+          color: color,
+          icon: Icons.share,
+          label: 'BAGIKAN',
+        ),
+      ],
+    );
+  }
+}
+
+class ButtonWithText extends StatelessWidget {
+  const ButtonWithText({
+    super.key,
+    required this.color,
+    required this.icon,
+    required this.label,
+  });
+
+  final Color color;
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: color),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
