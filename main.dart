@@ -18,9 +18,12 @@ class MyApp extends StatelessWidget {
             ImageSection(),
             TitleSection(
               name: 'One Day Tour Bromo by DiCa.Travel',
-              location: 'Prbolinggo, Jawa Timur, Indonesia',
+              location: 'Probolinggo, Jawa Timur, Indonesia',
             ),
             ButtonSection(),
+            TextSection(
+              description: 'Atur jadwalmu, siapkan kuda besimu,siapkan danamu dan mari nikmati tour bromo by DiCa.Travel!',
+            ),
           ],
         ),
       ),
@@ -34,7 +37,7 @@ class ImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/bromo.jpg',  
+      'assets/bromo.jpg',
       width: double.infinity,
       height: 240,
       fit: BoxFit.cover,
@@ -151,6 +154,26 @@ class ButtonWithText extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class TextSection extends StatelessWidget {
+  const TextSection({
+    super.key,
+    required this.description,
+  });
+
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Text(
+        description,
+        softWrap: true,
+      ),
     );
   }
 }
