@@ -1,178 +1,140 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter layout demo',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Destinasi Liburanmu'),
+          title: Text('Strawberry Smoothis'),
         ),
-        body: Column(
-          children: const [
-            ImageSection(),
-            TitleSection(
-              name: 'One Day Tour Bromo by DiCa.Travel',
-              location: 'Probolinggo, Jawa Timur, Indonesia',
+        body: Row(
+          children: [
+            // Column on the left
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: const Color.fromARGB(255, 235, 135, 201),
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'dilyams smots',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Container(
+                      padding: EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: const Color.fromARGB(255, 255, 169, 226)),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Strawberry Smoothis',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Salah satu olahan strawberry yang bisa kamu coba adalah strawberry smoothies, yakni strawberry yang diblender bersama air, susu, atau yoghurt. Tak hanya itu, smoothies ini juga bisa dilengkapi dengan buah lain, kacang, atau biji-bijian seperti chia seed'
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              Icon(Icons.star),
+                              SizedBox(width: 8),
+                              Text('1M Reviews'),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.red),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.kitchen, color: Colors.red),
+                                    SizedBox(height: 8),
+                                    Text('PREP:'),
+                                    Text('25 min'),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Container(
+                                padding: EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.green),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.timer, color: Colors.green),
+                                    SizedBox(height: 8),
+                                    Text('COOK:'),
+                                    Text('1 hr'),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Container(
+                                padding: EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.orange),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Icon(Icons.restaurant, color: Colors.orange),
+                                    SizedBox(height: 8),
+                                    Text('FEEDS:'),
+                                    Text('4-6'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            ButtonSection(),
-            TextSection(
-              description: 'Atur jadwalmu, siapkan kuda besimu,siapkan danamu dan mari nikmati tour bromo by DiCa.Travel!',
+            // Image on the right
+            Expanded(
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                child: Image.asset(
+                  'images/download.jpg', // Update this path with your image asset
+                  fit: BoxFit.cover, // Adjust the image to cover the available space
+                ),
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ImageSection extends StatelessWidget {
-  const ImageSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/bromo.jpg',
-      width: double.infinity,
-      height: 240,
-      fit: BoxFit.cover,
-    );
-  }
-}
-
-class TitleSection extends StatelessWidget {
-  const TitleSection({
-    super.key,
-    required this.name,
-    required this.location,
-  });
-
-  final String name;
-  final String location;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Text(
-                  location,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          const Text('41'),
-        ],
-      ),
-    );
-  }
-}
-
-class ButtonSection extends StatelessWidget {
-  const ButtonSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final Color color = Theme.of(context).primaryColor;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        ButtonWithText(
-          color: color,
-          icon: Icons.call,
-          label: 'HUBUNGI',
-        ),
-        ButtonWithText(
-          color: color,
-          icon: Icons.near_me,
-          label: 'RUTE',
-        ),
-        ButtonWithText(
-          color: color,
-          icon: Icons.share,
-          label: 'BAGIKAN',
-        ),
-      ],
-    );
-  }
-}
-
-class ButtonWithText extends StatelessWidget {
-  const ButtonWithText({
-    super.key,
-    required this.color,
-    required this.icon,
-    required this.label,
-  });
-
-  final Color color;
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: color),
-        Container(
-          margin: const EdgeInsets.only(top: 8),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: color,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class TextSection extends StatelessWidget {
-  const TextSection({
-    super.key,
-    required this.description,
-  });
-
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: Text(
-        description,
-        softWrap: true,
       ),
     );
   }
