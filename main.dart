@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:acakdadu/gradient_container.dart';
-void main(){
+
+void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Scaffold(
         body: GradientContainer(
-        Color.fromARGB(19, 235, 121, 187), Color.fromARGB(80, 216, 65, 183),
-        ),
+            Color.fromARGB(255, 46, 19, 63), Color.fromARGB(255, 139, 24, 159)),
       ),
     ),
   );
