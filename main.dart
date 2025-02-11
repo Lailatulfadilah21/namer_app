@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:acakdadu/gradient_container.dart';
+import 'package:acakdadu/navigation.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
+    MaterialApp(
       home: Scaffold(
-        body: GradientContainer(
-            Color.fromARGB(255, 46, 19, 63), Color.fromARGB(255, 139, 24, 159)),
+        body: TabBarDemo(),
       ),
-    ),
+    )
   );
 }
